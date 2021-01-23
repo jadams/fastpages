@@ -1,1 +1,1 @@
-Sitemap: https://jadam.ms/sitemap.xml
+Sitemap: https://jadams.github.io/fastpages/sitemap.xml
