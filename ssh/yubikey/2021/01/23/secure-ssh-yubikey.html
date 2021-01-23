@@ -4,19 +4,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>BLUF | jadams blog</title>
+<title>Secure SSH keys using YubiKeys | jadams blog</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="BLUF" />
+<meta property="og:title" content="Secure SSH keys using YubiKeys" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="a blog about computers and security." />
-<meta property="og:description" content="a blog about computers and security." />
-<link rel="canonical" href="https://jada.ms/2021/01/23/secure-ssh-yubikey.html" />
-<meta property="og:url" content="https://jada.ms/2021/01/23/secure-ssh-yubikey.html" />
+<meta name="description" content="Keep your private keys secure and non-exportable by storing them on a YubiKey" />
+<meta property="og:description" content="Keep your private keys secure and non-exportable by storing them on a YubiKey" />
+<link rel="canonical" href="https://jada.ms/ssh/yubikey/2021/01/23/secure-ssh-yubikey.html" />
+<meta property="og:url" content="https://jada.ms/ssh/yubikey/2021/01/23/secure-ssh-yubikey.html" />
 <meta property="og:site_name" content="jadams blog" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-01-23T00:00:00-06:00" />
 <script type="application/ld+json">
-{"url":"https://jada.ms/2021/01/23/secure-ssh-yubikey.html","@type":"BlogPosting","headline":"BLUF","dateModified":"2021-01-23T00:00:00-06:00","datePublished":"2021-01-23T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://jada.ms/2021/01/23/secure-ssh-yubikey.html"},"description":"a blog about computers and security.","@context":"https://schema.org"}</script>
+{"url":"https://jada.ms/ssh/yubikey/2021/01/23/secure-ssh-yubikey.html","@type":"BlogPosting","headline":"Secure SSH keys using YubiKeys","dateModified":"2021-01-23T00:00:00-06:00","datePublished":"2021-01-23T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://jada.ms/ssh/yubikey/2021/01/23/secure-ssh-yubikey.html"},"description":"Keep your private keys secure and non-exportable by storing them on a YubiKey","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://jada.ms/feed.xml" title="jadams blog" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -71,7 +71,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">BLUF</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-01-23T00:00:00-06:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Secure SSH keys using YubiKeys</h1><p class="page-description">Keep your private keys secure and non-exportable by storing them on a YubiKey</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-01-23T00:00:00-06:00" itemprop="datePublished">
         Jan 23, 2021
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -82,29 +82,18 @@ window.onload = wrap_img;
 </span></p>
 
     
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#ssh">ssh</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/categories/#yubikey">yubikey</a>
+        
+      
+      </p>
+    
 
     
-      
-        <div class="pb-5 d-flex flex-wrap flex-justify-end">
-          <div class="px-2">
-
-    <a href="https://github.com/jadams/fastpages/tree/master/_notebooks/2021-01-23-secure-ssh-yubikey.ipynb" role="button" target="_blank">
-<img class="notebook-badge-image" src="/assets/badges/github.svg" alt="View On GitHub">
-    </a>
-</div>
-
-          <div class="px-2">
-    <a href="https://mybinder.org/v2/gh/jadams/fastpages/master?filepath=_notebooks%2F2021-01-23-secure-ssh-yubikey.ipynb" target="_blank">
-        <img class="notebook-badge-image" src="/assets/badges/binder.svg" alt="Open In Binder"/>
-    </a>
-</div>
-
-          <div class="px-2">
-    <a href="https://colab.research.google.com/github/jadams/fastpages/blob/master/_notebooks/2021-01-23-secure-ssh-yubikey.ipynb" target="_blank">
-        <img class="notebook-badge-image" src="/assets/badges/colab.svg" alt="Open In Colab"/>
-    </a>
-</div>
-        </div>
       </header>
 
   <div class="post-content e-content" itemprop="articleBody">
@@ -117,31 +106,14 @@ window.onload = wrap_img;
 
 <div class="container" id="notebook-container">
         
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">&gt;</span> <span class="s2">&quot;Keep your private keys secure and non-exportable by storing them on a YubiKey&quot;</span>
-
-<span class="o">-</span> <span class="n">toc</span><span class="p">:</span> <span class="n">false</span>
-<span class="o">-</span> <span class="n">branch</span><span class="p">:</span> <span class="n">master</span>
-<span class="o">-</span> <span class="n">badges</span><span class="p">:</span> <span class="n">false</span>
-<span class="o">-</span> <span class="n">comments</span><span class="p">:</span> <span class="n">true</span>
-<span class="o">-</span> <span class="n">categories</span><span class="p">:</span> <span class="p">[</span><span class="n">ssh</span><span class="p">,</span> <span class="n">yubikey</span><span class="p">]</span>
-<span class="o">-</span> <span class="n">hide</span><span class="p">:</span> <span class="n">true</span>
-<span class="o">-</span> <span class="n">search_exclude</span><span class="p">:</span> <span class="n">true</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="BLUF">BLUF<a class="anchor-link" href="#BLUF"> </a></h1><p>Using hardware private keys greatly reduces the risk of your keys being stolen</p>
+<p>Note that much of the work here is based on <a href="https://github.com/drduh/YubiKey-Guide">https://github.com/drduh/YubiKey-Guide</a></p>
 
 </div>
-    
-
+</div>
+</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Pre-setup">Pre-setup<a class="anchor-link" href="#Pre-setup"> </a></h2>
@@ -262,7 +234,15 @@ I recommend the GnuPG package since it's the most lightweight/</p>
 
 
 
-  </div><a class="u-url" href="/2021/01/23/secure-ssh-yubikey.html" hidden></a>
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="jadams/fastpages"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/ssh/yubikey/2021/01/23/secure-ssh-yubikey.html" hidden></a>
 </article>
       </div>
     </main><footer class="site-footer h-card">
