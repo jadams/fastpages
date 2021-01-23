@@ -39,8 +39,8 @@ baseurl: "" # the subpath of your site, e.g. "/blog".
 # Github and twitter are optional:
 minima:
   social_links:
-    twitter: fastdotai
-    github: fastai
+    twitter: cyberjadams
+    github: jadams
 
 # Set this to true to get LaTeX math equation support
 use_math: 
@@ -100,7 +100,8 @@ plugins:
 paginate: 15
 paginate_path: /page:num/
 
-remote_theme: jekyll/minima
+style: dark
+remote_theme: b2a3e8/jekyll-theme-console
 
 titles_from_headings:
   enabled:     true
