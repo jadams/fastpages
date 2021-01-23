@@ -70,16 +70,7 @@
   
 
   
-  
-
-  
-  
-
-  
-  
-
-  
-      ,"page13": {
+      ,"page10": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://jada.ms/robots.txt",
